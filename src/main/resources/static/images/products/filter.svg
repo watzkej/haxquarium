@@ -1,0 +1,22 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#0099cc" />
+  <text x="150" y="30" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Power Filter</text>
+  
+  <!-- Filter body -->
+  <rect x="100" y="60" width="100" height="120" rx="5" ry="5" fill="#333333" />
+  
+  <!-- Filter intake -->
+  <rect x="80" y="100" width="20" height="80" fill="#222222" />
+  
+  <!-- Filter output -->
+  <rect x="200" y="80" width="20" height="20" fill="#222222" />
+  
+  <!-- Water flow -->
+  <path d="M220,90 C240,90 250,100 250,120 C250,140 240,150 220,150" fill="none" stroke="#66ccff" stroke-width="3" stroke-dasharray="5,5" />
+  
+  <!-- Control knob -->
+  <circle cx="150" cy="80" r="10" fill="#cc0000" />
+  
+  <!-- Power indicator -->
+  <circle cx="120" cy="80" r="5" fill="#00cc00" />
+</svg>

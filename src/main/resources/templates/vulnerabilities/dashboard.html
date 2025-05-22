@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/layout :: head('Vulnerabilities Dashboard')">
+    <title>Vulnerabilities Dashboard - HaxQuarium</title>
+</head>
+<body>
+    <nav th:replace="fragments/layout :: navbar"></nav>
+    
+    <div class="container mt-4">
+        <h1>OWASP Top 10 Vulnerabilities</h1>
+        <p class="lead">Find and exploit these vulnerabilities to earn points and learn about web application security.</p>
+        
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Your Progress</h5>
+                    </div>
+                    <div class="card-body">
+                        <div sec:authorize="isAuthenticated()">
+                            <h6>Points: <span class="badge bg-success" sec:authentication="principal.user.points">0</span></h6>
+                            <div class="progress">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                            </div>
+                            <p class="mt-2">You've completed 4 out of 16 challenges.</p>
+                            <a th:href="@{/profile/achievements}" class="btn btn-primary">View Your Achievements</a>
+                        </div>
+                        <div sec:authorize="!isAuthenticated()">
+                            <p>Please <a th:href="@{/login}">login</a> or <a th:href="@{/register}">register</a> to track your progress.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">Submit a Flag</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="flag-form" sec:authorize="isAuthenticated()">
+                            <div class="mb-3">
+                                <label for="flag" class="form-label">Flag UUID</label>
+                                <input type="text" class="form-control" id="flag" name="flagUuid" placeholder="Enter the flag UUID" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Flag</button>
+                        </form>
+                        <div id="flag-result" class="mt-3"></div>
+                        <div sec:authorize="!isAuthenticated()">
+                            <p>Please <a th:href="@{/login}">login</a> or <a th:href="@{/register}">register</a> to submit flags.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2>Vulnerability Categories</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">A01:2021-Broken Access Control</h5>
+                        <p class="card-text">Access control enforces policy such that users cannot act outside of their intended permissions.</p>
+                        <a th:href="@{/vulnerabilities/category/A01:2021-Broken Access Control}" class="btn btn-primary">View Challenges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">A02:2021-Cryptographic Failures</h5>
+                        <p class="card-text">Failures related to cryptography that often lead to sensitive data exposure or system compromise.</p>
+                        <a th:href="@{/vulnerabilities/category/A02:2021-Cryptographic Failures}" class="btn btn-primary">View Challenges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">A03:2021-Injection</h5>
+                        <p class="card-text">Injection flaws, such as SQL, NoSQL, OS, and LDAP injection, occur when untrusted data is sent to an interpreter.</p>
+                        <a th:href="@{/vulnerabilities/category/A03:2021-Injection}" class="btn btn-primary">View Challenges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">A04:2021-Insecure Design</h5>
+                        <p class="card-text">Insecure design refers to flaws in the design that cannot be fixed by proper implementation.</p>
+                        <a th:href="@{/vulnerabilities/category/A04:2021-Insecure Design}" class="btn btn-primary">View Challenges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">A05:2021-Security Misconfiguration</h5>
+                        <p class="card-text">Security misconfiguration is the most commonly seen issue, often resulting from insecure default configurations.</p>
+                        <a th:href="@{/vulnerabilities/category/A05:2021-Security Misconfiguration}" class="btn btn-primary">View Challenges</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">More Categories</h5>
+                        <p class="card-text">Explore the remaining OWASP Top 10 categories and their challenges.</p>
+                        <a th:href="@{/vulnerabilities/learn}" class="btn btn-primary">View All Categories</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer th:replace="fragments/layout :: footer"></footer>
+    <div th:replace="fragments/layout :: scripts"></div>
+    
+    <script>
+        $(document).ready(function() {
+            $('#flag-form').submit(function(e) {
+                e.preventDefault();
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '/vulnerabilities/submit-flag',
+                    data: {
+                        flagUuid: $('#flag').val()
+                    },
+                    success: function(response) {
+                        $('#flag-result').html('<div class="alert alert-success">' + response.message + '</div>');
+                        $('#flag').val('');
+                        
+                        // Refresh the page after a short delay to update points
+                        setTimeout(function() {
+                            location.reload();
+                        }, 3000);
+                    },
+                    error: function(xhr) {
+                        var response = xhr.responseJSON;
+                        $('#flag-result').html('<div class="alert alert-danger">' + response.message + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

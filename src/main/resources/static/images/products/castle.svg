@@ -1,0 +1,36 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#0099cc" />
+  <text x="150" y="30" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Decorative Castle</text>
+  
+  <!-- Castle base -->
+  <rect x="90" y="140" width="120" height="40" fill="#999999" />
+  
+  <!-- Main tower -->
+  <rect x="120" y="80" width="60" height="60" fill="#cccccc" />
+  <polygon points="120,80 150,50 180,80" fill="#cc0000" />
+  
+  <!-- Left tower -->
+  <rect x="90" y="100" width="30" height="40" fill="#cccccc" />
+  <polygon points="90,100 105,80 120,100" fill="#cc0000" />
+  
+  <!-- Right tower -->
+  <rect x="180" y="100" width="30" height="40" fill="#cccccc" />
+  <polygon points="180,100 195,80 210,100" fill="#cc0000" />
+  
+  <!-- Windows -->
+  <rect x="135" y="100" width="10" height="15" rx="5" ry="5" fill="#0099cc" />
+  <rect x="155" y="100" width="10" height="15" rx="5" ry="5" fill="#0099cc" />
+  
+  <!-- Door -->
+  <rect x="140" y="140" width="20" height="30" rx="10" ry="10" fill="#663300" />
+  
+  <!-- Flags -->
+  <rect x="150" y="30" width="2" height="20" fill="#333333" />
+  <polygon points="152,30 162,35 152,40" fill="#cc0000" />
+  
+  <rect x="105" y="60" width="2" height="20" fill="#333333" />
+  <polygon points="107,60 117,65 107,70" fill="#cc0000" />
+  
+  <rect x="195" y="60" width="2" height="20" fill="#333333" />
+  <polygon points="197,60 207,65 197,70" fill="#cc0000" />
+</svg>

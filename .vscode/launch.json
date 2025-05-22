@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Application<haxquarium>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.haxquarium.Application",
+            "projectName": "haxquarium",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

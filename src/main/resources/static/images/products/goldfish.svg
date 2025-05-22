@@ -1,0 +1,18 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#0099cc" />
+  <text x="150" y="30" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Goldfish</text>
+  
+  <!-- Fish body -->
+  <ellipse cx="150" cy="100" rx="70" ry="40" fill="#ffa500" />
+  
+  <!-- Tail -->
+  <path d="M220,100 L250,70 L250,130 Z" fill="#ffa500" />
+  
+  <!-- Eye -->
+  <circle cx="120" cy="90" r="8" fill="white" />
+  <circle cx="120" cy="90" r="4" fill="black" />
+  
+  <!-- Fins -->
+  <path d="M150,60 L170,40 L190,60 Z" fill="#ffa500" />
+  <path d="M150,140 L170,160 L190,140 Z" fill="#ffa500" />
+</svg>

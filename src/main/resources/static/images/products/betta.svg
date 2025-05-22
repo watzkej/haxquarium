@@ -1,0 +1,20 @@
+<svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#0099cc" />
+  <text x="150" y="30" font-family="Arial" font-size="20" fill="white" text-anchor="middle">Betta Fish</text>
+  
+  <!-- Fish body -->
+  <ellipse cx="150" cy="100" rx="50" ry="30" fill="#6600cc" />
+  
+  <!-- Elaborate tail -->
+  <path d="M200,100 C230,70 250,90 250,100 C250,110 230,130 200,100 Z" fill="#ff3399" />
+  
+  <!-- Top fin -->
+  <path d="M150,70 C160,50 180,40 190,60 C170,65 160,65 150,70 Z" fill="#ff3399" />
+  
+  <!-- Bottom fin -->
+  <path d="M150,130 C160,150 180,160 190,140 C170,135 160,135 150,130 Z" fill="#ff3399" />
+  
+  <!-- Eye -->
+  <circle cx="120" cy="95" r="6" fill="white" />
+  <circle cx="120" cy="95" r="3" fill="black" />
+</svg>
